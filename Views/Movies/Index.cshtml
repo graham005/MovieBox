@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BoxOffice.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="fw-bold">Movies</h1>
+
+<p>
+    <a asp-action="Create"class="btn btn-primary float-end" >Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieImageURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cast)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    <img src="~/images/@item.MovieImageURL" style="width:100px;height:60px" />
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cast)
+            </td>
+            
+            <td class="float-end">
+                <a asp-action="Edit" asp-route-id="@item.MovieId" class="btn btn-sm btn-info">Edit </a>
+                <a asp-action="Delete" asp-route-id="@item.MovieId" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

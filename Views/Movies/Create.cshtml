@@ -1,0 +1,76 @@
+﻿@model BoxOffice.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<div class="row" style="margin-top:20px">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieName" class="control-label"></label>
+                <input asp-for="MovieName" class="form-control" />
+                <span asp-validation-for="MovieName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseYear" class="control-label"></label>
+                <input asp-for="ReleaseYear" class="form-control" />
+                <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cast" class="control-label"></label>
+                <input asp-for="Cast"  class="form-control" />
+                <span asp-validation-for="Cast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieImage" class="control-label"></label>
+                <input asp-for="MovieImage" name="MovieImage" type="file" class="form-control" id="Iimage"
+                       onchange="document.getElementById('ImagePrev').src = window.URL.createObjectURL(this.files[0]) " />
+                <span asp-validation-for="MovieImage" class="text-danger"></span>
+                
+            </div>
+           @*  <div class="form-group">
+                <label asp-for="MovieImage" class="control-label"></label>
+                <div class="control-label">
+                    <input asp-for="MovieImage" type="file" name="MovieImage" class="custom-file-input" id="Iimage"
+                           onchange="document.getElementById('ImagePrev').src = window.URL.createObjectURL(this.files[0]) " />
+                    <label class="custom-file-label" for="Iimage">Choose file</label>
+                </div> 
+                <span asp-validation-for="MovieImage" class="text-danger"></span>
+
+                <img id="ImagePrev" src="" alt="Logo Image" width="150"
+                     height="150" style="border: 1px;margin-top:20px; margin-left:120px;" />
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px;"/>
+            </div>
+        </form>
+    </div>
+    <div class ="col-md-6 col-md-offset-2 ">
+        <h5>Image Preview</h5>
+        <img id="ImagePrev" src="" width="500"
+             height="300" style="border: 1px;margin-top:20px; margin-left:120px;" />
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-info float-end" style="margin-top:5px;">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ <script>
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selcted").html(fileName);
+    });
+</script> 

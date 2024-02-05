@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BoxOffice.Models.Movie>
+
+@{
+    ViewData["Title"] = "User";
+}
+<div class="movie-list">
+@foreach(var item in Model)
+{
+        <a href="@Url.Action("Details","Movies", new{id =item.MovieId})">
+    <div class="movie-card text-black">
+        
+        <dl>
+        <dd class="col-sm-10">
+            <img src="~/images/@item.MovieImageURL" style="width:185px;height:250px" />
+        </dd>
+       
+        <dd class = "col-sm-10 ">
+            <b>@Html.DisplayFor(model => item.MovieName)</b>
+        </dd>
+       
+        <dd class = "col-sm-10">
+            <i>@Html.DisplayNameFor(model => item.ReleaseYear) :</i>
+            <b>@Html.DisplayFor(model => item.ReleaseYear)</b>
+            </dd>
+       
+        <dd class = "col-sm-10">
+            <i>@Html.DisplayNameFor(model => item.Rating) :</i>
+            <b>@Html.DisplayFor(model => item.Rating)</b>
+        </dd>
+       </dl>
+    </div>
+        </a>
+
+}
+</div>

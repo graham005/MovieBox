@@ -1,0 +1,62 @@
+﻿@model BoxOffice.Models.Movie
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<div class="row ">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MovieId" />
+            <div class="form-group">
+                <label asp-for="MovieName" class="control-label"></label>
+                <input asp-for="MovieName" class="form-control" />
+                <span asp-validation-for="MovieName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseYear" class="control-label"></label>
+                <input asp-for="ReleaseYear" class="form-control" />
+                <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cast" class="control-label"></label>
+                <input asp-for="Cast" class="form-control" />
+                <span asp-validation-for="Cast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieImage" class="control-label"></label>
+                <input asp-for="MovieImage" name="MovieImage" type="file" class="form-control" id="Iimage" 
+                       onchange="document.getElementById('ImagePrev').src = window.URL.createObjectURL(this.files[0]) " />
+                <span asp-validation-for="MovieImage" class="text-danger"></span>
+                <img id="ImagePrev" src="" alt="Logo Image" width="300"
+                     height="150" style="border: 1px;margin-top:20px; margin-left:1px;" />
+            </div>
+
+            
+            <div class="form-group" style="margin-top:5px;">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-2 ">
+        <h5>Current Image</h5>
+        <img src="~/images/@Model.MovieImageURL" class="img-fluid ml-auto" style="width:500px;height:300px;margin-left:120px;" />
+        @Html.DisplayFor(model => model.MovieImageURL)
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"class="btn btn-info float-end" style="margin-top:5px;" >Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
